@@ -41,6 +41,7 @@ alias glog='git log --pretty-format:"%h - %an, %ar : %s'
 alias gloga='git log --pretty-format:"%h - %an, %ar : %s -- author=$1'
 alias pull='git pull'
 alias push='git push'
+alias commit='git commit -m'
 
 #Set up the Path
 export PATH=/Users/scatoe/Development/tools/maven/bin:/Users/scatoe/bin:$PATH
