@@ -1,48 +1,60 @@
-#enable global coloring
+#Set up coloring
+export PS1="\[\033[36m\]Ninja\[\033[m\]@\[\033[32m\]:\[\033[33;1m\]\w\[\033[m\]💀  "
 export CLICOLOR=1
-export LSCOLORS=GxFxCxDxBxegedabagaced
+export LSCOLORS=ExFxBxDxCxegedabagacad
+export GREP_OPTIONS='--color=auto'
+alias ls='ls -GFh'
+alias ll='ls -aslGFh'
 
-#change the prompt coloring
-export PS1="\[\033[1;36m\]\h\[\033[33m\](\w) \$\[\033[0m\] "
+# General aliases
+alias ..="cd .."
+alias ex='open .'
 
-# source the users bashrc if it exists
-if [ -f "${HOME}/.bashrc" ] ; then
-  source "${HOME}/.bashrc"
-fi
+# Interactive operation...
+alias rm='rm -i'
+alias cp='cp -i'
+alias mv='mv -i'
 
-# Set PATH so it includes user's private bin if it exists
-if [ -d "${HOME}/bin" ] ; then
-  PATH="${HOME}/bin:${PATH}"
-fi
+# Default to human readable figures
+alias df='df -h'
+alias du='du -h'
 
+# Misc :)
+alias less='less -r'                          # raw control characters
+alias whence='type -a'                        # where, of a sort
+alias grep='grep --color'                     # show differences in colour
+alias egrep='egrep --color=auto'              # show differences in colour
+alias fgrep='fgrep --color=auto'              # show differences in colour
+alias feds-are-here='diskutil list | grep /dev | sort -r | \
+                     xargs diskutil secureErase 1'
 
-export TOOLS=$HOME/Development/tools
-export PROJECTS=$HOME/Development/projects
-
-MVN_REPO=$HOME/.m2/maven.repo
-export RIO_HOME=$TOOLS/rio-4.2
-export BLITZ_HOME=$TOOLS/blitz
-export JINI_HOME=$TOOLS/jini2_1
-export RIVER_HOME=$TOOLS/apache-river-2.2.0
-
-export SECURITY_POLICY="-Djava.security.policy=$HOME/Development/config/security.policy -Djava.rmi.server.RMIClassLoaderSpi=net.jini.pref.PreferredClassProvider"
-
-export PATH=$PATH:$RIVER_HOME/bin:$RIO_HOME/bin
-
-
-# Aliases #
+# Maven
 alias mci='mvn clean install'
-alias mcint="mvn clean install -Dmaven.skip.test -skipTests=true"
+alias mcint='mvn clean install -DskipTests=true'
 alias mcp='mvn clean package'
 alias mi='mvn install'
 alias mp='mvn package'
-alias test='mvn clean test'
+alias test='mvn test'
+
+# Git
 alias glog='git log --pretty-format:"%h - %an, %ar : %s'
 alias gloga='git log --pretty-format:"%h - %an, %ar : %s -- author=$1'
-alias resetssh='rm $HOME/.ssh/known_hosts'
-alias ex='open .'
-alias vi='vim'
+alias pull='git pull'
+alias push='git push'
+alias commit='git commit -m'
+alias add='git add'
+alias status='git status'
 
-alias ll="ls -asl"
-alias grep="grep --color"
-alias less="less -r"
+# Spring
+alias run='mvn spring-boot:run'
+
+#Set up the project home
+export PROJECT_HOME=/Users/scatoe/Development/projects
+
+#Set up the Path
+export PATH=/Users/scatoe/Development/tools/maven/bin:/Users/scatoe/bin:$PATH
+
+# Setting PATH for Python 3.6
+# The original version is saved in .profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
