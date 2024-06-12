@@ -28,13 +28,6 @@ alias fgrep='fgrep --color=auto'              # show differences in colour
 alias feds-are-here='diskutil list | grep /dev | sort -r | \
                      xargs diskutil secureErase 1'
 
-# Maven
-alias mci='mvn clean install'
-alias mcint='mvn clean install -DskipTests=true'
-alias mcp='mvn clean package'
-alias mi='mvn install'
-alias mp='mvn package'
-alias test='mvn test'
 
 # Git
 alias glog='git log --pretty-format:"%h - %an, %ar : %s'
@@ -45,16 +38,30 @@ alias commit='git commit -m'
 alias add='git add'
 alias status='git status'
 
-# Spring
-alias run='mvn spring-boot:run'
 
 #Set up the project home
 export PROJECT_HOME=/Users/scatoe/Development/projects
 
 #Set up the Path
-export PATH=/Users/scatoe/Development/tools/maven/bin:/Users/scatoe/bin:$PATH
+export PATH=/Users/scatoe/bin:$PATH
 
-# Setting PATH for Python 3.6
-# The original version is saved in .profile.pysave
-PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
-export PATH
+log () {
+    if [ $# -eq 0 ]; then
+        echo "Usage is one parameter when logging"
+        return 1
+    fi
+    if [ "$1" == "-s" ]; then
+        if [ $# -ne 2 ]; then
+            echo "Usage is two parameters when setting the subject"
+            return 2
+        fi
+        echo -e "\n\n$2 - $(date)" >> ~/Documents/Log.txt
+        printf '%0.s-' $(seq 1 ${#2}) >> ~/Documents/Log.txt
+        printf "\n" >> ~/Documents/Log.txt
+    elif [ "$1" == "-o" ]; then
+        open ~/Documents/Log.txt
+    else
+        printf "$1\n" >> ~/Documents/Log.txt
+    fi
+}
+
