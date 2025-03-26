@@ -42,6 +42,19 @@ alias gloga='git log --pretty-format:"%h - %an, %ar : %s -- author=$1'
 alias pull='git pull'
 alias push='git push'
 alias commit='git commit -m'
+alias add='git add'
+alias status='git status'
+
+# Spring
+alias run='mvn spring-boot:run'
+
+#Set up the project home
+export PROJECT_HOME=/Users/scatoe/Development/projects
 
 #Set up the Path
 export PATH=/Users/scatoe/Development/tools/maven/bin:/Users/scatoe/bin:$PATH
+
+# Setting PATH for Python 3.6
+# The original version is saved in .profile.pysave
+PATH="/Library/Frameworks/Python.framework/Versions/3.6/bin:${PATH}"
+export PATH
